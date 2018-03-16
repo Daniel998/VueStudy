@@ -1,0 +1,74 @@
+Vue-cli：脚手架，可以理解为一个基础工程
+
+npm：node package manage（Node包管理） 
+如果网络延迟，可以安装淘宝镜像，命令改为cnpm
+
+安装脚手架：
+安装全局的都会进入你的nvm
+1、npm i vue -g（安装Vue）
+2、npm install --global vue-cli（全局安装 vue-cli）
+3、vue init webpack my-project（创建一个基于webpack模板的新项目）
+4、cd my-project（cd在命令面板表示切换目录）
+5、npm install（安装package.json下所有的依赖选项，安装下来的目录会存放在node_modules）
+6、npm run dev（启动）
+
+
+安装包：npm install <package-name> -g
+在安装依赖的时候，注意给后面加上--save-dev,语法如下
+npm install express --save-dev或
+npm install express --D
+
+build：构建脚本目录
+config：构建配置目录
+node_modules：依赖的Node工具包目录
+src：源码目录
+static：资源文件夹
+test：测试
+index.html：项目的一个模板
+package.json：安装依赖的选项都是在这个文件里面
+
+build/webpack.base.conf.js：是webpack配置的一个基础选项
+
+src/assets：素材文件夹（js/img/css）
+components：组件文件夹
+router：路由文件夹
+app.vue：首页文件
+main.js：入口文件
+
+
+环境：
+开发环境：
+生产环境
+
+./表示当前目录开始访问
+../切换到上一级目录
+
+
+
+import：表示引入
+export default：导出
+
+.vue文件，是开发vue的一个入门砖
+每个文件表示一个模块，每个模块分为三个小模块
+template：模板
+script：js代码
+style：css样式
+
+
+"dev": "webpack-dev-server --inline --progress --config build/webpack.dev.conf.js",
+dev：是表示咱们在启动时输入npm run dev，
+而后面的build/webpack.dev.conf.js：表示启动这个命令运行这个配置文件
+
+热更新：就是修改代码之后，不需要自己手动重启，会自动帮助我们启动和刷新
+
+
+打开URL<--->通过路由<---->找到相对应的组件<---->渲染到页面
+
+
+components和router文件夹是可以分类管理的
+文件分类，便于查找的同时也便于维护
+例如在components 和router 分别建admin 或者其他功能的文件夹进行不同的components 编码
+
+
+
+

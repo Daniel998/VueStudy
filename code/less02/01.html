@@ -1,0 +1,58 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>路由核心-基础流程</title>
+</head>
+<body>
+    
+<div id="app">
+    <h1>Router 1</h1>
+    <nav>
+        <!--
+            使用router-link组件来导航,在页面会替换为a标签
+            将需要跳转的路由写在to当中
+        -->
+        <router-link to="/home">Home</router-link>
+        <router-link to="/subPage">subPage</router-link>
+    </nav>
+    <router-view></router-view>
+</div>    
+<template id="home">
+    <p>Home page</p>
+</template>
+
+<template id="subPage">
+    <p>subPage</p>
+</template>
+<script src="js/vue.js"></script>
+<script src="js/vue-router.js"></script>
+<script>
+//路由就是通过用户点击路由加载相对应的组件
+//第一步：定义组件
+let Home = {
+    template:"#home"
+};
+
+let Subpage = {
+    template:"#subPage"
+};
+//第二步：定义路由
+let routes = [
+    {path:"/home",component:Home},
+    {path:"/subPage",component:Subpage}
+]
+//第三步：创建router实例，然后传入定义好的路由（`routes`配置）
+//每个路由都应该映射一个组件，component，可以是组件配置对象也可以通过Vue.extend()创建的组件构造器
+let router = new VueRouter({
+    routes:routes
+});
+//第四步：创建和挂载实例，从而让整个应用都有路由功能
+const app = new Vue({router:router}).$mount("#app");
+
+</script>
+
+</body>
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>动态路由</title>
+</head>
+<body>
+    
+<div id="app">
+    <h1>Router 2</h1>
+    <div>
+        <router-link to="/user/think">Think</router-link>
+        <router-link to="/user/dnedu">Dnedu</router-link>
+    </div>
+    <router-view></router-view>
+</div>    
+
+<script src="js/vue.js"></script>
+<script src="js/vue-router.js"></script>
+<script>
+let User = {
+    template:`<div>User：{{$route.params.id}}</div>`,
+    watch:{
+        '$route'(to,from){
+            console.log('从'+from.params.id+'到'+to.params.id);
+        }
+    }
+}
+
+let router = new VueRouter({
+    routes:[
+        //前面/user/后面任意
+        {path:"/user/:id/",component:User}
+    ]
+});
+
+const app = new Vue({router:router}).$mount("#app");
+
+</script>
+
+</body>
+</html>

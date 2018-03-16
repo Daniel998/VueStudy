@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>命名视图</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Router 4</h1>
+        <div>
+            <router-link to="/">Home</router-link>
+            <router-view name="sub">Subpage</router-view>
+            <router-view name="nav">Navicat</router-view>
+        </div>
+        <router-view></router-view>
+    </div>
+
+    <template id="home">
+        <div>
+            <p>首页</p>
+        </div>
+    </template>
+    <template id="subPage">
+        <p>子页</p>
+    </template>
+    <template id="nav">
+        <p>菜单</p>
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script>
+        let Home = {
+            template: '#home'
+        }
+        let SubPage = {
+            template: '#subPage'
+        }
+        let Nav = {
+            template: '#nav'
+        }
+
+        let router = new VueRouter({
+            routes: [
+                {                    
+                    path: "/",  components: {
+                        default:Home,
+                        sub:SubPage,
+                        nav:Nav
+                    }                
+                },
+            ]
+        });
+
+        const app = new Vue({ router: router }).$mount("#app");
+        //path：路由，query：字段
+
+        /*
+            可以通过router.push来跳转路由，和router-link效果一样，这个方法会向history栈添加一新的记录
+            会直接跳转到一个新的路由
+        */
+    </script>
+    <!--
+    直接跳转到会员中心，没登录？如果没登录我就要跳转到登录页面
+
+-->
+</body>
+
+</html>

@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>编程式路由</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Router 4</h1>
+        <div>
+            <router-link to="/user/foo">Foo</router-link>
+        </div>
+        <router-view></router-view>
+    </div>
+
+    <template id="user">
+        <div>
+            <p>Users：</p>
+        </div>
+    </template>
+    <template id="register">
+        <p>注册</p>
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script>
+        let User = {
+            template: '#user'
+        }
+        let Register = {
+            template: '#register'
+        }
+
+        let router = new VueRouter({
+            routes: [
+                {path: "/user/:id/", component: User},
+                {path: "/register",component:Register}
+            ]
+        });
+
+        const app = new Vue({ router: router }).$mount("#app");
+        //path：路由，query：字段
+
+        /*
+            可以通过router.push来跳转路由，和router-link效果一样，这个方法会向history栈添加一新的记录
+            会直接跳转到一个新的路由
+        */
+        router.push({path:'register',query:{plan:'private'}})
+    </script>
+<!--
+    直接跳转到会员中心，没登录？如果没登录我就要跳转到登录页面
+
+-->
+</body>
+
+</html>

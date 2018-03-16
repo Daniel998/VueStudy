@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>命名路由</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Router 4</h1>
+        <div>
+            <!--可以通过一个名称标识一个路由-->
+            <router-link :to="{name:'home'}">Foo</router-link>
+            <router-link :to="{name:'subpage'}">SubPage</router-link>
+            <router-link :to="{name:'nav'},params:{id:123}">Nav</router-link>
+        </div>
+        <router-view></router-view>
+    </div>
+
+    <template id="home">
+        <div>
+            <p>首页</p>
+        </div>
+    </template>
+    <template id="subPage">
+        <p>子页</p>
+    </template>
+    <template id="nav">
+        <p>菜单</p>
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script>
+        let Home = {
+            template: '#home'
+        }
+        let SubPage = {
+            template: '#subPage'
+        }
+        let Nav = {
+            template: '#nav'
+        }
+
+        let router = new VueRouter({
+            routes: [
+                {path: "/", name:'home',component: Home},
+                {path: "/subpage",name:'subpage',component:SubPage},
+                {path: "/nav",name:'nav',component:Nav}
+            ]
+        });
+
+        const app = new Vue({ router: router }).$mount("#app");
+        //path：路由，query：字段
+
+        /*
+            可以通过router.push来跳转路由，和router-link效果一样，这个方法会向history栈添加一新的记录
+            会直接跳转到一个新的路由
+        */
+    </script>
+<!--
+    直接跳转到会员中心，没登录？如果没登录我就要跳转到登录页面
+
+-->
+</body>
+
+</html>

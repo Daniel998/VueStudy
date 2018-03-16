@@ -1,0 +1,35 @@
+Vue：
+在Vue里面，this可以调用data和methods里面所有的对象和方法
+
+
+dblclick：双击
+contextmenu：右键
+    ev.preventDefault = true
+    ev.preventDefault() 取消默认行为
+    .prevent：取消默认行为
+.stop：取消事件冒泡
+    event.cancelBubble=true
+keydown：按下事件
+    ev.keyCode：按下键的键码
+
+
+过滤器：
+地址：https://cn.vuejs.org/v2/guide/migration.html#%E8%BF%87%E6%BB%A4%E5%99%A8
+
+过滤数据的工具
+
+好处：
+1、直接拿起来就用
+2、不会改变其他地方的值
+
+
+function demo(num){
+    num?num:0
+
+
+}
+demo()
+
+Vue加载数据：
+1、vue-resource
+2、axios

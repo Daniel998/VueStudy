@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>嵌套路由</title>
+</head>
+
+<body>
+
+    <div id="app">
+        <h1>Router 3</h1>
+        <div>
+            <router-link to="/user/foo">Foo</router-link>
+            <router-link to="/user/foo/profile">Profile</router-link>
+            <router-link to="/user/foo/posts">Posts</router-link>
+        </div>
+        <router-view></router-view>
+    </div>
+
+    <template id="user">
+        <div>
+            <p>会员中心首页</p>
+            <router-view></router-view>
+        </div>
+    </template>
+    <template id="userHome">
+        <p>会员首页</p>
+    </template>
+    <template id="userProfile">
+        <p>会员概况</p>
+    </template>
+    <template id="userPosts">
+        <p>会员信息</p>
+    </template>
+
+    <script src="js/vue.js"></script>
+    <script src="js/vue-router.js"></script>
+    <script>
+        let User = {
+            template: '#user'
+        }
+        let UserHome = {
+            template: '#userHome'
+        }
+        let UserProfile = {
+            template: '#userProfile'
+        }
+        let UserPosts = {
+            template: '#userPosts'
+        }
+
+        let router = new VueRouter({
+            routes: [
+                {
+                    path: "/user/:id/", component: User,
+                    children: [
+                        //user/name/
+                        { path: '', component: UserHome },
+                        { path: 'profile', component: UserProfile },
+                        { path: 'posts', component: UserPosts }
+                    ]
+                }
+            ]
+        });
+
+        const app = new Vue({ router: router }).$mount("#app");
+
+    </script>
+
+</body>
+
+</html>
